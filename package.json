@@ -1,0 +1,36 @@
+{
+  "name": "dsh-feiyu-plugins",
+  "version": "0.1.0",
+  "description": "给 DSH 上的 AI 装三样小东西：一双持续的眼睛、一本用量账、一条保命备份",
+  "type": "module",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "dsh-eyes",
+    "dsh-usage",
+    "dsh-backup",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "dsh-plugin",
+    "screenshot",
+    "usage",
+    "backup"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "compatibility": {
+      "dsh": "^0.1.7-rc.2 || ^0.2.0-rc.1 || ^0.2.1-alpha.1"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+# dsh-feiyu-plugins —— 整合包
+#
+# 装这一个包，会同时注册三个工具：eyes / usage / backup_memory。
+# 三个工具各自的配置也写在下面的 config 里（全部可选，不写就用默认值）。
+- insert:
+    - id: feiyu-plugins
+      name: dsh-feiyu-plugins
+      config:
+        # ---- 眼睛 ----
+        eyesInterval: 2      # 每隔几秒截一张
+        eyesKeep: 60         # 只保留最近几张
+
+        # ---- 账本 ----
+        # ledgerPath: 留空则用 ~/.dsh/dsh-usage/usage-ledger.json
+
+        # ---- 备份 ----
+        # backupDest: 留空则备份到 ~/dsh-backups
+        # backupPrefix: dsh-backup
+        # backupKeep: 7
