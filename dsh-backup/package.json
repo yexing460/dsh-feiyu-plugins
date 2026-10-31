@@ -1,0 +1,31 @@
+{
+  "name": "dsh-backup",
+  "version": "0.1.0",
+  "description": "一条保命线：把会话、规则和指定目录打包备份，只保留最近若干份",
+  "type": "module",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "scripts",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "backup",
+    "deepseek-harness"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "compatibility": {
+      "dsh": "^0.1.7-rc.2 || ^0.2.0-rc.1 || ^0.2.1-alpha.1"
+    }
+  }
+}

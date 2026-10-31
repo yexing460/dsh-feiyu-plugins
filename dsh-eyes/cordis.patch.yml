@@ -1,0 +1,5 @@
+# dsh-eyes
+# 装到 profile 后会把工具 eyes 注册进来。
+- insert:
+    - id: eyes
+      name: dsh-eyes

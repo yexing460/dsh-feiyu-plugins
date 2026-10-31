@@ -1,0 +1,5 @@
+# dsh-backup
+# 装到 profile 后会把工具 backup_memory 注册进来。
+- insert:
+    - id: backup
+      name: dsh-backup

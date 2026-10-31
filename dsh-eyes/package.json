@@ -1,0 +1,31 @@
+{
+  "name": "dsh-eyes",
+  "version": "0.1.0",
+  "description": "给 DSH 上的 AI 一双持续的眼睛：后台定时截屏，能回放\"刚才屏幕上发生了什么\"",
+  "type": "module",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "scripts",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "screenshot",
+    "deepseek-harness"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "compatibility": {
+      "dsh": "^0.1.7-rc.2 || ^0.2.0-rc.1 || ^0.2.1-alpha.1"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+# dsh-usage
+# 装到 profile 后会把工具 usage 注册进来。
+- insert:
+    - id: usage
+      name: dsh-usage
