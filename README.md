@@ -22,21 +22,27 @@
 
 ## 安装
 
-一个一个装：
+**推荐：装整合包，三个工具一起进来。**
 
-```bash
-dsh plugin add ./dsh-eyes
-dsh plugin add ./dsh-usage
-dsh plugin add ./dsh-backup
+在 DSH 的「添加插件」面板里输入仓库地址：
+
 ```
-
-或者从 GitHub：
-
-```bash
-dsh plugin add github:<你的用户名>/dsh-feiyu-plugins/dsh-eyes
+yexing460/dsh-feiyu-plugins
 ```
 
 装完重启 DSH 生效。
+
+**或者只装其中一个**——把仓库克隆下来，指向子目录：
+
+```bash
+git clone https://github.com/yexing460/dsh-feiyu-plugins
+cd dsh-feiyu-plugins
+dsh plugin add ./dsh-eyes      # 只装眼睛
+dsh plugin add ./dsh-usage     # 只装账本
+dsh plugin add ./dsh-backup    # 只装备份
+```
+
+> 注意：GitHub 直装**只认仓库根**，不认子目录。想单独装某个包，得先克隆下来指本地目录。
 
 ---
 
