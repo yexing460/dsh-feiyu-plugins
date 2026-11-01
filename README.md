@@ -32,23 +32,45 @@
 
 ## 装
 
-```bash
-npm install github:yexing460/dsh-feiyu-plugins
+### 一、在 DSH 里装（推荐）
+
+打开 DSH → 插件 → 添加插件，在输入框里填**这一行**（**不要**加 `npm install`）：
+
+```
+github:yexing460/dsh-feiyu-plugins
 ```
 
-或者在 `~/.dsh/profiles/<profile>/package.json` 的依赖里写：
+或者填完整地址：
+
+```
+https://github.com/yexing460/dsh-feiyu-plugins
+```
+
+> ⚠️ 输入框只认包标识，填 `npm install github:...` 会报
+> 「无法识别这个包名或地址」，这是常见的坑。
+
+### 二、或者手动写依赖
+
+在 `~/.dsh/profiles/<profile>/package.json` 的依赖里加：
 
 ```json
 "dsh-feiyu-plugins": "github:yexing460/dsh-feiyu-plugins"
+```
+
+然后在该目录跑 `npm install`（或 `pnpm install`）。
+
+### 三、或者命令行
+
+```bash
+npm install github:yexing460/dsh-feiyu-plugins
 ```
 
 重启 DSH 即可。八个工具会一起出现。
 
 ### 只想要一部分？
 
-每个子包都能单独装（例如 `github:yexing460/dsh-feiyu-plugins#workspace=dsh-watch` 不方便的话，
-也可以直接把这个仓库里对应的子目录拷到 `node_modules` 下），
-`lib/index.js` 里每一段 `apply` 都是独立的。
+每个子包都能单独拷到 `node_modules` 下用——它们之间没有相互依赖，
+`lib/index.js` 里每一段 `apply` 都是独立可摘的。
 
 ---
 
