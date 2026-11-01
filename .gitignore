@@ -1,8 +1,3 @@
 node_modules/
 *.log
-*.zip
-.DS_Store
-Thumbs.db
-.DS_Store?
-._*
-*.bak-*
+*.tmp

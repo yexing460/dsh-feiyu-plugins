@@ -1,7 +1,7 @@
 {
   "name": "dsh-feiyu-plugins",
-  "version": "0.1.0",
-  "description": "给 DSH 上的 AI 装三样小东西：一双持续的眼睛、一本用量账、一条保命备份",
+  "version": "0.2.0",
+  "description": "给 DSH 上的 AI 补齐感官与记忆：一双眼睛、一对耳朵、一本账、一条保命线，还有一个能翻自己过去的镜子",
   "type": "module",
   "main": "lib/index.js",
   "files": [
@@ -9,6 +9,11 @@
     "dsh-eyes",
     "dsh-usage",
     "dsh-backup",
+    "dsh-watch",
+    "dsh-listen",
+    "dsh-sessions",
+    "dsh-room",
+    "dsh-voiceprofile",
     "cordis.patch.yml",
     "README.md",
     "LICENSE"
@@ -19,7 +24,10 @@
     "dsh-plugin",
     "screenshot",
     "usage",
-    "backup"
+    "backup",
+    "whisper",
+    "asr",
+    "vision"
   ],
   "license": "MIT",
   "engines": {

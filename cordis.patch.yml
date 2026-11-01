@@ -1,7 +1,10 @@
 # dsh-feiyu-plugins —— 整合包
 #
-# 装这一个包，会同时注册三个工具：eyes / usage / backup_memory。
-# 三个工具各自的配置也写在下面的 config 里（全部可选，不写就用默认值）。
+# 装这一个包，八个工具同时注册：
+#   eyes / usage / backup_memory                              （一档，纯 JS）
+#   watch_video / transcribe / scan_sessions / room_picture / voice_profile（二档，需 Python）
+#
+# 配置全部可选，不写就用默认值。
 - insert:
     - id: feiyu-plugins
       name: dsh-feiyu-plugins
@@ -17,3 +20,8 @@
         # backupDest: 留空则备份到 ~/dsh-backups
         # backupPrefix: dsh-backup
         # backupKeep: 7
+
+        # ---- 二档（感官）----
+        # 二档全部靠 Python 脚本，解释器默认取 PATH 里的 `python`。
+        # 想指定绝对路径，设环境变量 DSH_PYTHON 即可，例如：
+        #   DSH_PYTHON=C:\Python311\python.exe

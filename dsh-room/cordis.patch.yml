@@ -1,0 +1,4 @@
+# dsh-room：把「画屋子」做成工具。
+- insert:
+    - id: room
+      name: dsh-room

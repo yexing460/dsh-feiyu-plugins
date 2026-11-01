@@ -1,0 +1,4 @@
+# dsh-listen：把「听声音」做成工具，让大肥鱼能听音频/视频里的话。
+- insert:
+    - id: listen
+      name: dsh-listen

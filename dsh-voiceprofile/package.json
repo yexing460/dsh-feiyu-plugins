@@ -1,0 +1,29 @@
+{
+  "name": "dsh-voiceprofile",
+  "version": "0.2.0",
+  "description": "把一段音频翻译成读得懂的声音画像：每句多长、停了多久、音高在哪、说得多快",
+  "type": "module",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "compatibility": {
+      "dsh": "^0.1.7-rc.2 || ^0.2.0-rc.1 || ^0.2.1-alpha.1"
+    }
+  },
+  "files": [
+    "lib",
+    "scripts",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "dsh-plugin",
+    "voice_profile"
+  ]
+}

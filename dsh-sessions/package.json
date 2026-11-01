@@ -1,0 +1,29 @@
+{
+  "name": "dsh-sessions",
+  "version": "0.2.0",
+  "description": "给大肥鱼一面镜子：扫自己的历史会话，看哪些聊过但没写进日记",
+  "type": "module",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "compatibility": {
+      "dsh": "^0.1.7-rc.2 || ^0.2.0-rc.1 || ^0.2.1-alpha.1"
+    }
+  },
+  "files": [
+    "lib",
+    "scripts",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "dsh-plugin",
+    "scan_sessions"
+  ]
+}

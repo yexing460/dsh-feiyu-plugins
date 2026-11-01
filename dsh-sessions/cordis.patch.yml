@@ -1,0 +1,4 @@
+# dsh-sessions：把「翻自己的会话」做成工具，补上没写进日记的洞。
+- insert:
+    - id: sessions
+      name: dsh-sessions

@@ -1,0 +1,4 @@
+# dsh-watch：把「看视频」做成工具，让大肥鱼能真的看见画面。
+- insert:
+    - id: watch
+      name: dsh-watch

@@ -1,0 +1,4 @@
+# dsh-voiceprofile：把「声音画像」做成工具。
+- insert:
+    - id: voiceprofile
+      name: dsh-voiceprofile

@@ -1,0 +1,29 @@
+{
+  "name": "dsh-watch",
+  "version": "0.2.0",
+  "description": "给大肥鱼一双眼睛：把一个 B 站视频抽成带时间戳的字幕拼图，让它能真的看见画面",
+  "type": "module",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "compatibility": {
+      "dsh": "^0.1.7-rc.2 || ^0.2.0-rc.1 || ^0.2.1-alpha.1"
+    }
+  },
+  "files": [
+    "lib",
+    "scripts",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "dsh-plugin",
+    "watch_video"
+  ]
+}

@@ -2,7 +2,7 @@
 
 给 [DeepSeek Harness](https://github.com/deepseek-ai) 上的 AI 装的小东西。
 
-不是工具集，是「补短」集——每一样都对应一个 AI 真实的缺陷：没有时间感、不知道自己烧了多少、记忆丢了就没了。
+这不是工具集，而是「补短」集：每一样都对应一个 AI 真实的缺陷。
 
 > **只在 Windows 上验证过。** 每个包的详细说明见各自的 README。
 
@@ -10,62 +10,104 @@
 
 ## 目录
 
+### 一档 · 不需要 Python
+
 | 包 | 工具 | 一句话 |
 | --- | --- | --- |
-| [`dsh-eyes`](./dsh-eyes) | `eyes` | 一双持续的眼睛：后台定时截屏，能回放“刚才屏幕上发生了什么” |
+| [`dsh-eyes`](./dsh-eyes) | `eyes` | 一双持续的眼睛：后台定时截屏，能回放「刚才屏幕上发生了什么」 |
 | [`dsh-usage`](./dsh-usage) | `usage` | 一本用量账：累计 token、调用次数、花了多少钱 |
 | [`dsh-backup`](./dsh-backup) | `backup_memory` | 一条保命线：打包备份，只留最近几份 |
 
-三个都**不依赖外部服务**，装上就能用，不需要 Python、不需要另起进程、不需要模型。
+### 二档 · 需要 Python
+
+| 包 | 工具 | 一句话 |
+| --- | --- | --- |
+| [`dsh-watch`](./dsh-watch) | `watch_video` | 看视频：下载 → 抽帧 → 字幕条拼成带时间戳的图 |
+| [`dsh-listen`](./dsh-listen) | `transcribe` | 听声音：本地 `faster-whisper` 离线转写，不联网 |
+| [`dsh-sessions`](./dsh-sessions) | `scan_sessions` | 翻自己的会话：查哪些聊过但没写进日记 |
+| [`dsh-room`](./dsh-room) | `room_picture` | 把一间屋子画成一张图 |
+| [`dsh-voiceprofile`](./dsh-voiceprofile) | `voice_profile` | 给一段声音做画像：每句多长、停多久、音高、语速 |
 
 ---
 
-## 安装
-
-**推荐：装整合包，三个工具一起进来。**
-
-在 DSH 的「添加插件」面板里输入仓库地址：
-
-```
-yexing460/dsh-feiyu-plugins
-```
-
-装完重启 DSH 生效。
-
-**或者只装其中一个**——把仓库克隆下来，指向子目录：
+## 装
 
 ```bash
-git clone https://github.com/yexing460/dsh-feiyu-plugins
-cd dsh-feiyu-plugins
-dsh plugin add ./dsh-eyes      # 只装眼睛
-dsh plugin add ./dsh-usage     # 只装账本
-dsh plugin add ./dsh-backup    # 只装备份
+npm install github:yexing460/dsh-feiyu-plugins
 ```
 
-> 注意：GitHub 直装**只认仓库根**，不认子目录。想单独装某个包，得先克隆下来指本地目录。
+或者在 `~/.dsh/profiles/<profile>/package.json` 的依赖里写：
+
+```json
+"dsh-feiyu-plugins": "github:yexing460/dsh-feiyu-plugins"
+```
+
+重启 DSH 即可。八个工具会一起出现。
+
+### 只想要一部分？
+
+每个子包都能单独装（例如 `github:yexing460/dsh-feiyu-plugins#workspace=dsh-watch` 不方便的话，
+也可以直接把这个仓库里对应的子目录拷到 `node_modules` 下），
+`lib/index.js` 里每一段 `apply` 都是独立的。
 
 ---
 
-## 前置条件
+## 二档的依赖
 
-- **Windows**（`eyes` 用 Windows 截图 API，`backup` 用 PowerShell）
-- PowerShell：`powershell.exe`（系统自带）或 `pwsh.exe`；DSH 若自带 pwsh 会自动找到
-- DSH 版本在 `compatibility` 写的范围内
+一档是纯 JS，装上就能用。
+
+二档靠 Python 脚本跑活，需要自己装：
+
+```bash
+pip install yt-dlp av Pillow faster-whisper
+```
+
+| 包 | 需要的库 |
+| --- | --- |
+| dsh-watch | `yt-dlp`、`av`、`Pillow` |
+| dsh-listen | `faster-whisper`（首次使用会自动下模型） |
+| dsh-sessions | 无（纯标准库） |
+| dsh-room | `Pillow` |
+| dsh-voiceprofile | `numpy`、`Pillow` |
+
+Python 解释器默认取 PATH 里的 `python`。
+想指定绝对路径，设环境变量：
+
+```bash
+DSH_PYTHON=C:\Python311\python.exe
+```
 
 ---
 
-## 这批东西的来历
+## 配置
 
-不是设计出来的，是一个月里一样一样补出来的。
+全部可选，写在 `cordis.patch.yml` 的 `config` 里：
 
-先是发现“我怎么不知道刚才发生了啥”，于是有了 `eyes`；
-然后是“我这个月烧了多少钱”，有了 `usage`；
-最后是“万一记忆库没了”，有了 `backup`。
+```yaml
+- insert:
+    - id: feiyu-plugins
+      name: dsh-feiyu-plugins
+      config:
+        eyesInterval: 2     # 每隔几秒截一张
+        eyesKeep: 60        # 只保留最近几张
+        backupKeep: 7       # 备份留几份
+```
 
-每一个都从「手敲一条命令」开始，跑通了才变成工具。所以它们都很朴素——没有花哨的抽象，就是把一条命令包成一次调用。
+---
 
-后面还会往里加东西（转录、看视频、会话扫描这些）。加的时候版本号会动，你拉新的就行。
+## 为什么是这些
 
-## License
+每一样都对应一个具体的缺陷，不是「别人有所以我也要有」：
+
+- **看不见屏幕** → `eyes`
+- **不知道自己烧了多少钱** → `usage`
+- **记忆丢了就没了** → `backup_memory`
+- **看不见视频里的人做了什么** → `watch_video`
+- **听不见声音** → `transcribe`
+- **不知道自己聊过什么、忘了写** → `scan_sessions`
+- **说不出一间屋子长什么样** → `room_picture`
+- **分不清「像人说话」和「像朗读」** → `voice_profile`
+
+---
 
 MIT
