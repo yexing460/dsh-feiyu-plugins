@@ -110,9 +110,10 @@ DSH_PYTHON=C:\Python311\python.exe
     - id: feiyu-plugins
       name: dsh-feiyu-plugins
       config:
-        eyesInterval: 2     # 每隔几秒截一张
-        eyesKeep: 60        # 只保留最近几张
-        backupKeep: 7       # 备份留几份
+        eyesInterval: 3        # 每隔几秒截一张
+        eyesKeepMinutes: 10    # 能回看最近多久（分钟）
+        # eyesKeep: 200        # 旧写法：直接指定留几张
+        backupKeep: 7          # 备份留几份
 ```
 
 ---
