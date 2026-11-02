@@ -31,10 +31,20 @@ const SCRIPT = join(HERE, '..', 'scripts', 'capture.ps1')
 
 export function apply(ctx, config) {
   const cfg = config || {}
-  const interval = Number(cfg.interval || 2)
-  const keep = Number(cfg.keep || 60)
+  const interval = Math.max(1, Number(cfg.interval || 3))
+
+  // keepMinutes 是给人看的（"能回看多久"），keep 是内部实现（"留几张"）。
+  // 2026-11-02 之前默认 2 秒 × 60 张，只能回看两分钟，翻不回一个视频片段。
+  // 现在优先用分钟算，没给才退回张数，旧配置照样能用。
+  const keepMinutes = Number(cfg.keepMinutes || 0)
+  const keep = keepMinutes > 0
+    ? Math.max(10, Math.ceil((keepMinutes * 60) / interval))
+    : Math.max(2, Number(cfg.keep || 200))
+
   const eyeDir = cfg.dir || join(tmpdir(), 'fy-eyes')
   const stopFlag = join(eyeDir, 'STOP')
+  /** 实际能回看多久（秒），给提示语用。 */
+  const spanSeconds = interval * keep
 
   function listShots() {
     if (!existsSync(eyeDir)) return []
@@ -90,7 +100,7 @@ export function apply(ctx, config) {
           },
         },
         render: (_args, value) => [
-          { type: 'text', text: value.message || ('eyes ' + value.action + ' ok，共 ' + value.count + ' 张') },
+          { type: 'text', text: value.message || ('eyes ' + value.action + ' ok，共 ' + value.count + ' 张 ) },
         ],
       },
       async execute(args) {
@@ -107,7 +117,9 @@ export function apply(ctx, config) {
           return {
             ok: true, action, count: shots.length,
             files: shots.slice(-3).map((s) => s.path),
-            message: '眼睛开了（pid ' + pid + '），每 ' + interval + ' 秒一张，留最近 ' + keep + ' 张。',
+            message:
+              '眼睛开了（pid ' + pid + '），每 ' + interval + ' 秒一张，留最近 ' + keep +
+              ' 张 —— 也就是能回看最近约 ' + Math.round(spanSeconds / 60) + ' 分钟。',
           }
         }
 
@@ -131,7 +143,10 @@ export function apply(ctx, config) {
           return {
             ok: true, action, count: shots.length,
             files: shots.slice(-3).map((s) => s.path),
-            message: '现在有 ' + shots.length + ' 张，最后一张在 ' + last + '。',
+            message:
+              '现在有 ' + shots.length + ' 张，最后一张在 ' + last +
+              '。配置是每 ' + interval + ' 秒一张、留 ' + keep +
+              ' 张，能回看约 ' + Math.round(spanSeconds / 60) + ' 分钟。',
           }
         }
 
