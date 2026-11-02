@@ -1,7 +1,7 @@
 {
   "name": "dsh-feiyu-plugins",
-  "version": "0.2.0",
-  "description": "给 DSH 上的 AI 补齐感官与记忆：一双眼睛、一对耳朵、一本账、一条保命线，还有一个能翻自己过去的镜子",
+  "version": "0.2.1",
+  "description": "给 DSH 上的 AI 补齐感官与记忆：一双眼睛、一对耳望、一本用量账、一条保命制，还有一面能翻自己过去的镜子",
   "type": "module",
   "main": "lib/index.js",
   "files": [
